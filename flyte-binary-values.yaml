@@ -5,13 +5,13 @@ configuration:
     dbname: flyte
   storage:
     type: minio
-    metadataContainer: flyte #This is the default bucket created with Minio. Controlled by the MINIO_DEFAULT_BUCKETS env var in the local-flyte-resources.yaml manifest
+    metadataContainer: flyte
     userDataContainer: flyte
     provider: s3
     providerConfig:
       s3:
         authType: "accesskey"
-        endpoint: "http://192.168.100.11:30088"
+        endpoint: "http://192.168.100.11:30084"
         accessKey: "minio"
         secretKey: "miniostorage"
         disableSSL: "true"
@@ -24,16 +24,16 @@ configuration:
       k8s:
         inject-finalizer: true
         default-env-vars:
-          - FLYTE_AWS_ENDPOINT: "http://192.168.100.11:30088"
+          - FLYTE_AWS_ENDPOINT: "http://192.168.100.11:30084"
           - FLYTE_AWS_ACCESS_KEY_ID: "minio"
-          - FLYTE_AWS_SECRET_ACCESS_KEY: "miniostorage" 
+          - FLYTE_AWS_SECRET_ACCESS_KEY: "miniostorage"
 
     task_resources:
       defaults:
         cpu: 100m
-        memory: 500Mi #Default resources for tasks; override in workflow code for heavy tasks
+        memory: 500Mi
       limits:
-        cpu: 1 #Added CPU limit to prevent resource contention
+        cpu: 1
         memory: 3Gi
 
 serviceAccount:
