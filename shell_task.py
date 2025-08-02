@@ -1,4 +1,4 @@
-from flytekit import kwtypes
+from flytekit import kwtypes, FlyteFile
 from flytekit.extras.tasks.shell import OutputLocation, ShellTask
 
 t1 = ShellTask(
