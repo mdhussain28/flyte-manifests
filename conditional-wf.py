@@ -38,14 +38,15 @@ def handle_invalid_dataset() -> Dict[str, str]:
 
 @workflow
 def sales_analysis_workflow(dataset_size: int, threshold: float = 500.0) -> Dict[str, str]:
+    sales_data = preprocess_data(dataset_size=dataset_size)
     return (
         conditional("sales_analysis")
         .if_(dataset_size <= 0)
         .then(handle_invalid_dataset())
         .elif_((dataset_size > 1000) & (dataset_size <= 10000))
-        .then(analyze_large_dataset(sales_data=preprocess_data(dataset_size=dataset_size), threshold=threshold))
+        .then(analyze_large_dataset(sales_data=sales_data, threshold=threshold))
         .elif_((dataset_size >= 1) & (dataset_size <= 1000))
-        .then(analyze_small_dataset(sales_data=preprocess_data(dataset_size=dataset_size), threshold=threshold))
+        .then(analyze_small_dataset(sales_data=sales_data, threshold=threshold))
         .else_()
         .then(handle_invalid_dataset())
     )
