@@ -1,4 +1,4 @@
-from flytekit import task, workflow
+from flytekit import *
 
 @task
 def say_hello(name: str) -> str:
