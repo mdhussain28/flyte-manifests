@@ -69,7 +69,7 @@ def package_directory(sales_file: FlyteFile, scores_file: FlyteFile, output_file
 @task(container_image=IMAGE)
 def read_output_file(directory: FlyteDirectory) -> str:
     local_dir = directory.download()
-    output_file_path = os.path.join(local_dir, "my_custom_folder", "output.txt")
+    output_file_path = os.path.join(local_dir, "Files_Folder", "output.txt")
     with open(output_file_path, "r") as f:
         content = f.read()
     return content
