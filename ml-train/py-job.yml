@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ml-train-workflow-job
+  namespace: flyte
+spec:
+  template:
+    spec:
+      containers:
+      - name: flyte-workflow
+        image: eyesoncloud/ml-train:v1
+        command: ["/app/.venv/bin/pyflyte", "run", "src/workflows/hello_world.py", "ml_workflow", "--n_samples", "1000", "--n_features", "12"]
+        env:
+          - name: MLFLOW_TRACKING_URI
+            value: "http://192.168.100.11:30050"
+        resources:
+          limits:
+            cpu: 2
+      restartPolicy: Never
