@@ -1,0 +1,17 @@
+[project]
+name = "ML-train"
+version = "0.1.0"
+description = "ML training project"
+readme = "README.md"
+requires-python = ">=3.9,<3.13"
+dependencies = [
+    "flytekit>=1.10.0",
+    "torch>=2.0.0",
+    "tensorflow>=2.12.0",
+    "optuna>=3.1.0",
+    "ray[tune]>=2.4.0",
+    "mlflow>=2.3.0",
+    "dvc>=3.0.0",
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+]
