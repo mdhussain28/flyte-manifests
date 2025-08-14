@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends git \
 
 # Copy project config & src package
 COPY pyproject.toml .
+ENV UV_HTTP_TIMEOUT=120
 RUN uv sync
 COPY src/ ./src/
 
@@ -24,4 +25,4 @@ ENV PYTHONPATH=/app
 ENV MLFLOW_TRACKING_URI=http://192.168.100.11:30050
 
 # Default command
-CMD ["pyflyte", "run", "src/workflows/hello_world.py", "ml_workflow", "--n_samples", "1000", "--n_features", "12"]
+CMD ["pyflyte", "run", "src/workflows/linear-regression.py", "ml_workflow", "--n_samples", "1000", "--n_features", "12"]
