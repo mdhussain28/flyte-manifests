@@ -1,4 +1,4 @@
-from flytekit import task
+from flytekit import task, Resources
 from src.core.core import SimpleNet, save_model
 import torch
 import torch.nn as nn
