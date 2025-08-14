@@ -3,7 +3,7 @@ import mlflow.pytorch
 import torch
 import pandas as pd
 
-@task
+@task(container_image="eyesoncloud/ml-train:v1", requests=Resources(cpu="1", mem="2Gi"), limits=Resources(cpu="1", mem="3Gi"))
 def predict(model_path: str, input_data: pd.DataFrame) -> pd.DataFrame:
     model = mlflow.pytorch.load_model(model_path)
     model.eval()
