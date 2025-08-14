@@ -1,4 +1,4 @@
-from flytekit import task
+from flytekit import task, Resources
 import torch
 import torch.distributed as dist
 import torch.nn as nn
