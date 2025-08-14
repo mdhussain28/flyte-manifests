@@ -32,5 +32,11 @@ def train_model(X: pd.DataFrame, y: pd.DataFrame, lr: float = 0.01, hidden_size:
         _, predicted = torch.max(outputs, 1)
         accuracy = (predicted == y_tensor).float().mean().item()
 
-    run_id = save_model(model, "model_v1", params={"lr": lr, "hidden_size": hidden_size}, metrics={"accuracy": accuracy})
+    run_id = save_model(
+    model,
+    "model_v1",
+    params={"lr": lr, "hidden_size": hidden_size},
+    metrics={"accuracy": accuracy},
+    example_input=X_tensor[:5]  # small batch to define schema
+)
     return f"runs:/{run_id}/model_v1"  # Return MLflow artifact URI
