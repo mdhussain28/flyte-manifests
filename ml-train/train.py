@@ -6,7 +6,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import pandas as pd
 
-@task
+@task(container_image="eyesoncloud/ml-train:v1", requests=Resources(cpu="1", mem="2Gi"), limits=Resources(cpu="1", mem="3Gi"))
 def train_model(X: pd.DataFrame, y: pd.DataFrame, lr: float = 0.01, hidden_size: int = 64, epochs: int = 10) -> str:
     torch.manual_seed(42)
     X_tensor = torch.FloatTensor(X.values)
