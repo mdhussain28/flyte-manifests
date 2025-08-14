@@ -11,7 +11,7 @@ class HyperParams(NamedTuple):  # Define structured output
     lr: float
     hidden_size: int
 
-@task
+@task(container_image="eyesoncloud/ml-train:v1", requests=Resources(cpu="1", mem="2Gi"), limits=Resources(cpu="1", mem="3Gi"))
 def tune_hyperparameters(n_trials: int = 20) -> HyperParams:  # Change return type to HyperParams
     X, y = generate_synthetic_data()
     X_tensor = torch.FloatTensor(X.values)
