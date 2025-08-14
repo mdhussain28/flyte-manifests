@@ -7,7 +7,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from src.core.core import generate_synthetic_data
 import os
 
-@task
+@task(container_image="eyesoncloud/ml-train:v1", requests=Resources(cpu="1", mem="2Gi"), limits=Resources(cpu="1", mem="3Gi"))
 def distributed_train(rank: int, world_size: int, lr: float = 0.01, hidden_size: int = 64) -> str:
     os.environ["MASTER_ADDR"] = "localhost"
     os.environ["MASTER_PORT"] = "12355"
