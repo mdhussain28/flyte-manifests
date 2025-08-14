@@ -1,4 +1,4 @@
-from flytekit import workflow
+from flytekit import workflow, Resources
 import pandas as pd
 from src.tasks.data import load_data
 from src.tasks.train import train_model
