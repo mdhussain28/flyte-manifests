@@ -1,4 +1,4 @@
-from flytekit import task
+from flytekit import task, Resources
 from src.core.core import generate_synthetic_data
 import pandas as pd
 
