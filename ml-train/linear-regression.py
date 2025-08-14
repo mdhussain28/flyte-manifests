@@ -5,7 +5,7 @@ from src.tasks.train import train_model
 from src.tasks.predict import predict
 from src.orchestration.tune import tune_hyperparameters
 
-@workflow
+@task(container_image="eyesoncloud/ml-train:v1", requests=Resources(cpu="1", mem="2Gi"), limits=Resources(cpu="1", mem="3Gi"))
 def ml_workflow(n_samples: int = 1000, n_features: int = 12) -> pd.DataFrame:
     best_params = tune_hyperparameters(n_trials=20)
     X, y = load_data(n_samples=n_samples, n_features=n_features)
