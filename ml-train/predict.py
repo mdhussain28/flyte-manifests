@@ -1,4 +1,4 @@
-from flytekit import task
+from flytekit import task, Resources
 import mlflow.pytorch
 import torch
 import pandas as pd
