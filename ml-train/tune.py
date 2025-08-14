@@ -1,4 +1,4 @@
-from flytekit import task
+from flytekit import task, Resources
 import optuna
 import torch
 import torch.nn as nn
